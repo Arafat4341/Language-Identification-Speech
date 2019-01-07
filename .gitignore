@@ -1,77 +1,72 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
 
-# C extensions
-*.so
+keras_1_to_2\.py
 
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
+trained\.model
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+data/__pycache__/
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+\.vscode/
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*,cover
-.hypothesis/
+tools/__pycache__/
 
-# Translations
-*.mo
-*.pot
+keras/data_loaders/__pycache__/MusicBackgroundSpectrogramGenerator\.cpython-37\.pyc
 
-# Django stuff:
-*.log
+keras/data_loaders/__pycache__/NoisyBackgroundSpectrogramGenerator\.cpython-37\.pyc
 
-# Sphinx documentation
-docs/_build/
+keras/data_loaders/__pycache__/SpectrogramGenerator\.cpython-37\.pyc
 
-# PyBuilder
-target/
+keras/data_loaders/__pycache__/VinylBackgroundSpectrogramGenerator\.cpython-37\.pyc
 
-#Ipython Notebook
-.ipynb_checkpoints
+keras/__pycache__/
 
-# Project specific
-**/snapshots
-**/model.ckpt-157585
-.idea/**
-*/log/**
-*/logs/**
-/datasets/**
-*/node_modules/*
-/web-server/audio
-/web-server/model
+keras/data_loaders/__pycache__/__init__\.cpython-36\.pyc
 
-*.iml
-**/.texpadtmp/**
-/demo
+keras/data_loaders/__pycache__/__init__\.cpython-37\.pyc
+
+keras/data_loaders/__pycache__/csv_loader\.cpython-36\.pyc
+
+keras/data_loaders/__pycache__/csv_loader\.cpython-37\.pyc
+
+keras/data_loaders/__pycache__/DirectoryLoader\.cpython-36\.pyc
+
+keras/data_loaders/__pycache__/image_loader\.cpython-36\.pyc
+
+keras/data_loaders/__pycache__/spectrogram2\.cpython-36\.pyc
+
+keras/data_loaders/__pycache__/SpectrogramGenerator\.cpython-36\.pyc
+
+keras/models/__pycache__/__init__\.cpython-36\.pyc
+
+keras/models/__pycache__/__init__\.cpython-37\.pyc
+
+keras/models/__pycache__/crnn\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder_crnn\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder_deeper\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder_finetune\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder_small\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder\.cpython-36\.pyc
+
+keras/models/__pycache__/topcoder\.cpython-37\.pyc
+
+\.ipynb_checkpoints/
+
+Untitled\.ipynb
+
+tensorflow/models/__pycache__/
+
+tensorflow/logs/
+
+gcloud_account\.json
+
+tensorflow/__pycache__/
+
+output\.mp3
+
+*.wav
+
+rad/zavrsni_stari\.pdf

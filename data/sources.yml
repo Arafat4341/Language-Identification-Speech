@@ -1,37 +1,68 @@
-english:
+# the channels and playlists used for creating the dataset
+croatian:
   users:
-    - CNN
-    - bbcnews
-    - VOAvideo
-  playlists:
     -
-german:
-  users:
-    - deutschewelle
-    - euronewsde
-    - N24de
   playlists:
-    -
+    - https://www.youtube.com/playlist?list=PLuEWODEWd3kN7F9seRFINtTrkdU_i7eFc
+    - https://www.youtube.com/playlist?list=PLuEWODEWd3kOePjz7RvP4TXZWWClbFVeA
+    - https://www.youtube.com/playlist?list=PLo4hepc7i-X7kR2jX9VbC-BwEjP3fUjnB
+    - https://www.youtube.com/playlist?list=PLtkTKfgc4b4Xe4f3ss1YxIMgSc6TG3Xp8
+    - https://www.youtube.com/playlist?list=PLdlGkoiYOP-ExTnjFWJLWu5U1kUmLp58F
+    
+
 french:
   users:
+    - franceinfo
     - france24
+    - RadioCanadaInfo
   playlists:
-    -
+    - https://www.youtube.com/playlist?list=PL9Brb00Qv1VeTC-0-IeMgQvbnjvuvEz3U
+    - https://www.youtube.com/playlist?list=PL-qBKb-rfbhjb5QBUIYISMHZ6PvYqcC95
+    - https://www.youtube.com/channel/UCqEVwTnDzlzKOGYNFemqnYA
+
+
 spanish:
   users:
     - antena3noticias
     - rtve
   playlists:
-    -
-chinese:
-  users:
-    - VOAchina
-  playlists:
-    -
-russian:
-  users:
-    - Russia24TV
-    - rtrussian
-  playlists:
-    -
+    - https://www.youtube.com/playlist?list=PLk8twIygnCMg6wC-qUprm9-rba-3a5Wec
+    - https://www.youtube.com/playlist?list=PLrOLrHoKK5_Bly9FK3Df62YgWheWat493
+    - https://www.youtube.com/playlist?list=PLk8twIygnCMgyiolRa1sC1LN1pofwQ3IC
+    - https://www.youtube.com/playlist?list=PLegYiMN7h5_FzsQv9dQHzMeTAld7ksnIC
+    
+    
+# each language has a single short video, for script testing purposes
+
+#  croatian:
+#    users:
+#      -
+#    playlists:
+#      - https://www.youtube.com/playlist?list=PLv3j2_RROTdEh39boAuP-JPeDR7dy6wih
+
+#  french:
+#    users:
+#      - 
+#    playlists:
+#      - https://www.youtube.com/playlist?list=PLv3j2_RROTdEgT-oLhk11Xjbev7Q02F3-
+
+#  spanish:
+#    users:
+#      - 
+#    playlists:
+#      - https://www.youtube.com/playlist?list=PLv3j2_RROTdHpKmps4DaomrqXd8VmZV1g
+
+#  english:
+#     users:
+#      -
+#     playlists:
+#      - https://www.youtube.com/playlist?list=PLv3j2_RROTdHSp1oIY4L_t5xX0dFV3GMH
+
+
+
+
+
+
+
+
 

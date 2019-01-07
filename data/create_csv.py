@@ -7,15 +7,6 @@ import math
 import itertools
 from random import shuffle
 
-LABELS = {
-    "english": 0,
-    "german": 1,
-    "french": 2,
-    "spanish": 3,
-    "chinese": 4,
-    "russian": 5,
-}
-
 
 def recursive_glob(path, pattern):
     for root, dirs, files in os.walk(path):
@@ -60,7 +51,7 @@ def create_csv(root_dir, train_validation_split=0.8):
     test_set = []
 
     for lang in languages:
-        label = LABELS[lang]
+        label = lang #LABELS[lang]
         training_set += zip(file_names[lang][:num_train], itertools.repeat(label))
         validation_set += zip(file_names[lang][num_train:num_train + num_validation], itertools.repeat(label))
         test_set += zip(file_names[lang][num_train + num_validation:num_train + num_validation + num_test], itertools.repeat(label))
