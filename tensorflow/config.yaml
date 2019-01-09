@@ -1,10 +1,8 @@
-train_data_dir: "/home/nuna_hadzic1/spectrograms150/training"
-validation_data_dir: "/home/nuna_hadzic1/spectrograms150/validation"
-test_data_dir: "/home/nuna_hadzic1/spectrograms150/testing"
+# folder locations for training, validation and testing sets
+train_data_dir: "/home/user/spectrograms/training"
+validation_data_dir: "/home/user/spectrograms/validation"
+test_data_dir: "/home/user/spectrograms/testing"
 
-# train_data_dir: "/media/bro/New Volume/subsetorgspectograms150/training"
-# validation_data_dir: "/media/bro/New Volume/subsetorgspectograms150/validation"
-# test_data_dir: "/media/bro/New Volume/subsetorgspectograms150/testing"
 
 model: "inception_resnet_v2_crnn"
 gpus: 2

@@ -24,13 +24,28 @@ sys.path.append(lib_dir)
 
 from SpectrogramGenerator import SpectrogramGenerator
 
-
-model_dir = '../weights.07.model'
+tensorflow.keras.backend.clear_session()
+model_dir = './weights.07.model'
+print("Loading model: {}".format(model_dir))
 model = load_model(model_dir)
+
+#----------------------------------------------------
+from tensorflow.keras.optimizers import Adam
+optimizer = Adam(lr=0.001, decay=1e-6)
+model.compile(optimizer=optimizer,
+                  loss="categorical_crossentropy",
+                  metrics=["accuracy"]) 
+print("Model compiled.")
+#----------------------------------------------------
+
+# https://github.com/keras-team/keras/issues/6462
+global graph
+graph = tensorflow.get_default_graph()
 
 lang_codes = {'croatian': 'hr-HR',
               'french'  : 'fr-FR',
               'spanish' : 'es-ES'}
+
 
 def predict(input_file):
 
@@ -43,7 +58,8 @@ def predict(input_file):
     data = np.stack(data)
 
     # Model Generation
-    probabilities = model.predict(data)
+    with graph.as_default():
+        probabilities = model.predict(data)
 
     classes = np.argmax(probabilities, axis=1)
     average_prob = np.mean(probabilities, axis=0)
@@ -88,7 +104,7 @@ def translate_text(text):
     return html.unescape(translation['translatedText'])
 
 
-def speech_to_text(text, language_code='en-GB'):
+def text_to_speech(text, language_code='en-GB'):
     # Instantiates a client
     client = texttospeech.TextToSpeechClient()
 
@@ -143,7 +159,7 @@ while to_record == 'y':
     try:
         transcribed = transcribe_file(filename, lang_codes[result])
         translated = translate_text(transcribed)
-        speech_to_text(translated)
+        text_to_speech(translated)
     except UnboundLocalError as e:
         print('\nThe following exception occured:')
         print(e)

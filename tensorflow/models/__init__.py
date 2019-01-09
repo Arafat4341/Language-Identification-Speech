@@ -1,2 +1,1 @@
-import models.inceptionv3
 import models.inception_resnet_v2_crnn

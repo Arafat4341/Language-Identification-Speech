@@ -31,8 +31,6 @@ class SpectrogramGenerator(object):
         if os.path.isdir(self.source):
             files = []
             files.extend(recursive_glob(self.source, "*.wav"))
-            # files.extend(recursive_glob(self.source, "*.mp3"))
-            # files.extend(recursive_glob(self.source, "*.m4a"))
         else:
             files = [self.source]
 
@@ -47,13 +45,14 @@ class SpectrogramGenerator(object):
         n - apply filter/effect
         rate 10k - limit sampling rate to 10k --> max frequency 5kHz (Shenon Nquist Theorem)
         y - small y: defines height
+        x - small x: defines width
         X capital X: defines pixels per second
         m - monochrom
         r - no legend
         o - output to stdout (-)
         '''
 
-        file_name = os.path.abspath( "tmp_{}.png".format(random.randint(0, 100000)) )
+        file_name = "tmp_{}.png".format(random.randint(0, 100000))
         command = "sox -V0 '{}' -n remix 1 rate 10k spectrogram -y {} -x {} -X {}  -m -r -o {}".format(file, height, width, pixel_per_sec, file_name)
         p = Popen(command, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
 
