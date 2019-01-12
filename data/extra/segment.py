@@ -7,11 +7,16 @@ audio files.
 
 import subprocess
 import os
+import sys
 import argparse
 import glob
 import string
 import yaml
 from collections import Counter
+
+lib_dir = os.path.join(os.getcwd(), "../")
+sys.path.append(lib_dir)
+
 from create_csv import create_csv
 
 file_counter = Counter()
@@ -55,7 +60,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     segment()
-
-    #create_csv(os.path.join(args.output_path, "segmented"))
 
     print(file_counter)

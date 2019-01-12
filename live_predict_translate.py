@@ -5,6 +5,8 @@ import html
 import time
 import uuid
 import argparse
+import subprocess
+from subprocess import DEVNULL
 import numpy as np
 import soundfile as sf
 import sounddevice as sd
@@ -19,12 +21,20 @@ from google.cloud.speech import enums
 from google.cloud.speech import types
 from google.cloud import translate
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/media/bro/New Volume/Zavrsni rad/Language-Identification-Speech/tensorflow/gcloud_account.json"
+
+
 lib_dir = os.path.join(os.getcwd(), "./tensorflow")
 sys.path.append(lib_dir)
-
 from SpectrogramGenerator import SpectrogramGenerator
 
+lib_dir = os.path.join(os.getcwd(), "./data")
+sys.path.append(lib_dir)
+from normalise import neg23File
+
 tensorflow.keras.backend.clear_session()
+
+# Path to the the trained model
 model_dir = './weights.07.model'
 print("Loading model: {}".format(model_dir))
 model = load_model(model_dir)
@@ -45,6 +55,7 @@ graph = tensorflow.get_default_graph()
 lang_codes = {'croatian': 'hr-HR',
               'french'  : 'fr-FR',
               'spanish' : 'es-ES'}
+
 
 
 def predict(input_file):
@@ -129,43 +140,69 @@ def text_to_speech(text, language_code='en-GB'):
     with open('output.mp3', 'wb') as out:
         # Write the response to the output file.
         out.write(response.audio_content)
-        print('Audio content written to file "output.mp3"')
 
+def count_down():
+    print('ll start recording in:')
+    countdown = 3
+    while (countdown):
+        print(countdown)
+        countdown -=  1
+        time.sleep(0.7)
 
-fs = 44100
-sd.default.samplerate = fs
-duration = 3  # seconds
+def downsample_normalise(filename, downsampled):
+    cmd = ["ffmpeg", "-i", filename, "-map", "0", "-ac", "1", "-ar", "16000", downsampled]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.communicate()
 
-to_record = 'y'
-while to_record == 'y':
-    print('In three seconds I\'ll start recording!')
-    count_down = 3
-    while (count_down):
-        print(count_down)
-        count_down -=  1
-        time.sleep(1)
+    neg23File(downsampled)
 
-    print('Recording!')
-    recording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
-    sd.wait()
-    print('Finished recording')
+def play(audio_file_path):
+    cmd = ["ffplay", "-nodisp", "-autoexit", audio_file_path]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.communicate()
 
-    filename = 'recording_{0}.wav'.format(uuid.uuid4())
-    sf.write(filename, recording, fs)
+if __name__ == "__main__":
 
-    print('Identifying the language...')
-    result = predict(filename)
-    print(result)
-    try:
-        transcribed = transcribe_file(filename, lang_codes[result])
-        translated = translate_text(transcribed)
-        text_to_speech(translated)
-    except UnboundLocalError as e:
-        print('\nThe following exception occured:')
-        print(e)
-        print("It is most likely that the microphone didn't catch any sound.")
-    #os.remove(filename)
+    fs = 44100
+    duration = 3  # seconds
 
-    print('\nWould you like to record and identify again? [y/n]: ')
-    to_record = input()
-   
+    to_record = 'y'
+    while to_record == 'y':
+        count_down()
+        print('Recording!')
+        recording = sd.rec(int(duration * fs), samplerate=fs, channels=1)
+        sd.wait()
+        print('Finished recording')
+
+        guid = uuid.uuid4()
+        filename = 'recording_{0}.wav'.format(guid)
+        sf.write(filename, recording, fs)
+        
+        # downsampling for the purpose of predicting the language
+        # audio normalisation
+        downsampled = 'downsampled_{0}.wav'.format(guid)
+        downsample_normalise(filename, downsampled)
+        
+        print('\nIdentifying the language...')
+        print('The proportions below are in the following order: Croatian, French, Spanish')
+        result = predict(downsampled)
+        try:
+            transcribed = transcribe_file(filename, lang_codes[result])
+            translated = translate_text(transcribed)
+            text_to_speech(translated)
+            print('Playing the translation!')
+            play('output.mp3')
+            os.remove('output.mp3')
+        except Exception as e:
+            print('\nThe following exception occured:')
+            print(e)
+            print("--------------------------\n \
+            Note from the author: If it's not a Google API error, \
+            it may just be that an issue with microphone and sounddevice \n \
+            --------------------------")
+        os.remove(filename)
+        os.remove(downsampled)
+
+        print('\nWould you like to record and identify again? [y/n]: ')
+        to_record = input()
+    

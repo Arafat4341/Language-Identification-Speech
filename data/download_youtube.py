@@ -102,6 +102,4 @@ if __name__ == '__main__':
             playlist_id = category
             download_playlist(language, playlist_name, playlist_id)
 
-    #create_csv(os.path.join(args.output_path, "segmented"))
-
     print(file_counter)
