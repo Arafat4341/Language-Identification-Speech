@@ -13,6 +13,7 @@ def predict(cli_args):
     config = load(open(cli_args.config, "rb"))
     class_labels = config["label_names"]
     
+    # the file is not normalised before predicting in this script
     params = {"pixel_per_second": config["pixel_per_second"], "input_shape": config["input_shape"], "num_classes": config["num_classes"]}
     data_generator = SpectrogramGenerator(cli_args.input_file, params, shuffle=False, run_only_once=True).get_generator()
     data = [np.divide(image, 255.0) for image in data_generator]
@@ -20,6 +21,15 @@ def predict(cli_args):
 
     # Model Generation
     model = load_model(cli_args.model_dir)
+    #----------------------------------------------------
+    # A necessary step if the model was trained using multiple GPUs.
+    # Adjust parameters if you used different ones while training
+    optimizer = tensorflow.keras.optimizers.Adam(lr=0.001, decay=1e-6)
+    model.compile(optimizer=optimizer, 
+                loss="categorical_crossentropy", 
+                metrics=["accuracy"]) 
+    print("Model compiled.")
+    #----------------------------------------------------
 
     probabilities = model.predict(data)
 

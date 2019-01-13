@@ -71,3 +71,5 @@ output\.mp3
 
 rad/zavrsni_stari\.pdf
 weights.07.model
+
+__pycache__/

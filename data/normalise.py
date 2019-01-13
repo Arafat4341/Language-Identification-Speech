@@ -7,7 +7,6 @@ Note: this script is based upon it and is modified
 for this project's case
 '''
 
-
 #!/usr/bin/python
 import os
 import sys

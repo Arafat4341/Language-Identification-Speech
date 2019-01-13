@@ -11,26 +11,29 @@ import imageio
 import os
 import argparse
 import glob
+from yaml import load
+
 from create_csv import create_csv
 
-# adjust this if you have other languages or any language is missing
-languages = ["croatian",
-             "french",
-             "spanish"]
+config = load(open('../tensorflow/config.yaml', "rb"))
+languages = config["label_names"]
 
 results = dict((lang,0) for lang in languages)
 
-def main(args):
+def delete_bad_images(args):
     source = os.path.abspath(args.source)
     for filename in glob.glob(source + '/**/*.png', recursive=True):
         check_image(filename)
+    print('Bad spectrogram deletion ended.')
+    print('Final number of spectrograms per class and dataset split:')
+    create_csv(args.source)
 
 def check_image(image_path):
     image = imageio.imread(image_path, pilmode="L")
     if(np.count_nonzero(image-np.mean(image)) == 0):
         print('Deleted ' + image_path)
         os.remove(image_path)
-        results[image_path.split('/')[-2]] += 1
+        results[image_path.split('/')[-2]] += 1 # increments the count for the specific class
         print(results, end='\n\n')
 
 
@@ -40,5 +43,5 @@ if __name__ == '__main__':
                         help='Path to the folder in which are the language subfolders that contain spectrograms')
     args = parser.parse_args()
     
-    main(args)
-    create_csv(args.source)
+    delete_bad_images(args)
+    

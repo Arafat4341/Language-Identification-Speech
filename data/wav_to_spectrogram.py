@@ -7,6 +7,8 @@ import numpy as np
 import sys
 import imageio
 
+from yaml import load
+
 lib_dir = os.path.join(os.getcwd(), "../tensorflow")
 sys.path.append(lib_dir)
 
@@ -25,9 +27,7 @@ def directory_to_spectrograms(args):
     # Each generator will scan a directory for audio files and convert them to spectrogram images
     # adjust this if you have other languages or any language is missing
     
-    languages = ["croatian",
-                 "french",
-                 "spanish"]
+    languages = args.languages
     
 
     generators = [SpectrogramGenerator(os.path.join(source, language), config, shuffle=False, run_only_once=True) for language in languages]
@@ -61,17 +61,27 @@ def directory_to_spectrograms(args):
             print("Saved {} images. Stopped on {}".format(i, language))
             break
 
+    create_csv(cli_args.target)
 
 if __name__ == "__main__":
+    
+    config = load(open('../tensorflow/config.yaml', "rb"))
+
+    # default values, you can still change them by specifying different values when executing the script
+    shape = config['input_shape']
+    pixel_per_second = config['pixel_per_second']
+    languages = config['label_names']
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--shape', dest='shape', default=[129, 150, 1], type=int, nargs=3)
-    parser.add_argument('--pixel', dest='pixel_per_second', default=50, type=int)
+    # have default values, can be specified if desired
+    parser.add_argument('--shape', dest='shape', default=shape, type=int, nargs=3)
+    parser.add_argument('--pixel', dest='pixel_per_second', default=pixel_per_second, type=int)
+    parser.add_argument('--languages', dest='languages', default=languages)
+    # you have to specify these when executing the script
     parser.add_argument('--source', dest='source', required=True)
     parser.add_argument('--target', dest='target', required=True)
     cli_args = parser.parse_args()
 
     directory_to_spectrograms(cli_args)
 
-    create_csv(cli_args.target)
 
