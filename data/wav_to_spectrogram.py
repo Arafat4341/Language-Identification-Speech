@@ -61,7 +61,7 @@ def directory_to_spectrograms(args):
             print("Saved {} images. Stopped on {}".format(i, language))
             break
 
-    create_csv(cli_args.target)
+    create_csv(args.target)
 
 if __name__ == "__main__":
     

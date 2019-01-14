@@ -5,10 +5,10 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
 import tensorflow
-from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+from load_compile_model import load_compile_model
 
 def equal_error_rate(y_true, probabilities):
     
@@ -44,16 +44,7 @@ def evaluate(cli_args):
         shuffle=False)
 
     # Model Generation
-    model = load_model(cli_args.model_dir)
-    #----------------------------------------------------
-    # A necessary step if the model was trained using multiple GPUs.
-    # Adjust parameters if you used different ones while training
-    optimizer = tensorflow.keras.optimizers.Adam(lr=0.001, decay=1e-6)
-    model.compile(optimizer=optimizer, 
-                loss="categorical_crossentropy", 
-                metrics=["accuracy"]) 
-    print("Model compiled.")
-    #----------------------------------------------------
+    model = load_compile_model(cli_args.model_dir)
     print(model.summary())
 
     probabilities = model.predict_generator(

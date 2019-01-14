@@ -34,9 +34,7 @@ def pipeline(output_path, max_downloads):
 
     # normalisation of segmented audio files
     print('\nLoudness normalisation of segmented audio files started!\n')
-    args = ExtendedDict( {
-        'source': segmented
-    } )
+    args = ExtendedDict( {'source': segmented} )
     normalise(args)
 
     # segmented wav files to spectrograms

@@ -7,10 +7,10 @@ test_data_dir: "/home/user/org_spectrograms/testing"
 
 
 model: "inception_resnet_v2_crnn"
+# if you'll be training using CPU, just put 0
 gpus: 2
 
-#batch_size: 256
-batch_size: 16
+batch_size: 256
 learning_rate: 0.001
 num_epochs: 50
 
