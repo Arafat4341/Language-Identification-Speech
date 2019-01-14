@@ -1,61 +1,8 @@
-
-keras_1_to_2\.py
-
-trained\.model
-
 data/__pycache__/
 
 \.vscode/
 
 tools/__pycache__/
-
-keras/data_loaders/__pycache__/MusicBackgroundSpectrogramGenerator\.cpython-37\.pyc
-
-keras/data_loaders/__pycache__/NoisyBackgroundSpectrogramGenerator\.cpython-37\.pyc
-
-keras/data_loaders/__pycache__/SpectrogramGenerator\.cpython-37\.pyc
-
-keras/data_loaders/__pycache__/VinylBackgroundSpectrogramGenerator\.cpython-37\.pyc
-
-keras/__pycache__/
-
-keras/data_loaders/__pycache__/__init__\.cpython-36\.pyc
-
-keras/data_loaders/__pycache__/__init__\.cpython-37\.pyc
-
-keras/data_loaders/__pycache__/csv_loader\.cpython-36\.pyc
-
-keras/data_loaders/__pycache__/csv_loader\.cpython-37\.pyc
-
-keras/data_loaders/__pycache__/DirectoryLoader\.cpython-36\.pyc
-
-keras/data_loaders/__pycache__/image_loader\.cpython-36\.pyc
-
-keras/data_loaders/__pycache__/spectrogram2\.cpython-36\.pyc
-
-keras/data_loaders/__pycache__/SpectrogramGenerator\.cpython-36\.pyc
-
-keras/models/__pycache__/__init__\.cpython-36\.pyc
-
-keras/models/__pycache__/__init__\.cpython-37\.pyc
-
-keras/models/__pycache__/crnn\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder_crnn\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder_deeper\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder_finetune\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder_small\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder\.cpython-36\.pyc
-
-keras/models/__pycache__/topcoder\.cpython-37\.pyc
-
-\.ipynb_checkpoints/
-
-Untitled\.ipynb
 
 tensorflow/models/__pycache__/
 
@@ -69,7 +16,6 @@ output\.mp3
 
 *.wav
 
-rad/zavrsni_stari\.pdf
 weights.07.model
 
 __pycache__/
