@@ -4,9 +4,10 @@ import os
 import sys
 import tensorflow
 from yaml import load
+from tensorflow.keras.models import load_model
 
 from SpectrogramGenerator import SpectrogramGenerator
-from load_compile_model import load_compile_model
+from compile_model import compile_model
 
 def predict(model, input_file, config):
 
@@ -40,6 +41,7 @@ if __name__ == "__main__":
 
     if not os.path.isfile(args.input_file):
         sys.exit("Input is not a file.")
-
-    model = load_compile_model(args.model_dir)
+    
+    model = load_model(args.model_dir)
+    model = compile_model(model)
     predict(model, args.input_file, args.config)

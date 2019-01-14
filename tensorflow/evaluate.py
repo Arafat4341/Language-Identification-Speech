@@ -7,8 +7,8 @@ from scipy.interpolate import interp1d
 import tensorflow
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-
-from load_compile_model import load_compile_model
+from tensorflow.keras.models import load_model
+from compile_model import compile_model
 
 def equal_error_rate(y_true, probabilities):
     
@@ -29,12 +29,12 @@ def metrics_report(y_true, y_pred, probabilities, label_names=None):
     print(confusion_matrix(y_true, y_pred, labels=available_labels))
 
 
-def evaluate(cli_args):
+def evaluate(args):
 
     config = load(open(cli_args.config, "rb"))
 
     # Load Data + Labels
-    dataset_dir = config["test_data_dir"] if cli_args.use_test_set else config["validation_data_dir"]
+    dataset_dir = config["test_data_dir"] if args.use_test_set else config["validation_data_dir"]
     
     data_generator = ImageDataGenerator(rescale=1./255).flow_from_directory(
         directory=dataset_dir,
@@ -44,7 +44,8 @@ def evaluate(cli_args):
         shuffle=False)
 
     # Model Generation
-    model = load_compile_model(cli_args.model_dir)
+    model = load_model(args.model_dir)
+    model = compile_model(model)
     print(model.summary())
 
     probabilities = model.predict_generator(
@@ -64,6 +65,6 @@ if __name__ == "__main__":
     parser.add_argument('--model', dest='model_dir', required=True)
     parser.add_argument('--config', dest='config', required=True)
     parser.add_argument('--testset', dest='use_test_set', default=False, type=bool)
-    cli_args = parser.parse_args()
+    args = parser.parse_args()
 
-    evaluate(cli_args)
+    evaluate(args)

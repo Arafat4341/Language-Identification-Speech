@@ -15,6 +15,8 @@ from tensorflow.keras.optimizers import Adam, RMSprop, SGD
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Model
 
+from compile_model import compile_model
+
 #https://github.com/keras-team/keras/issues/2436#issuecomment-354882296
 class ModelMGPU(Model):
     def __init__(self, ser_model, gpus):
@@ -69,20 +71,13 @@ def train(cli_args, log_dir):
     print(model.summary())
     
     if config["gpus"] > 1:
-        try:
-            model = ModelMGPU(model, config["gpus"])
-            print("Training using multiple GPUs..")
-        except Exception as e:
-            print(e)
+        model = ModelMGPU(model, config["gpus"])
+        print("Training using multiple GPUs..")
     else:
         print("Training using single GPU or CPU..")
 
-    optimizer = Adam(lr=config["learning_rate"], decay=1e-6)
-    # optimizer = RMSprop(lr=config["learning_rate"], rho=0.9, epsilon=1e-08, decay=0.95)
-    # optimizer = SGD(lr=config["learning_rate"], decay=1e-6, momentum=0.9, clipnorm=1, clipvalue=10)
-    model.compile(optimizer=optimizer,
-                  loss="categorical_crossentropy",
-                  metrics=["accuracy"]) 
+    # compiles the model with defined parameters, specified in the compile.py
+    model = compile_model(model)
 
     if cli_args.weights:
         model.load_weights(cli_args.weights)
@@ -124,7 +119,4 @@ if __name__ == "__main__":
     shutil.copy(cli_args.config, log_dir)
 
     model_file_name = train(cli_args, log_dir)
-
-    DummyCLIArgs = namedtuple("DummyCLIArgs", ["model_dir", "config", "use_test_set"])
-    #evaluate(DummyCLIArgs(model_file_name, cli_args.config, False))
 

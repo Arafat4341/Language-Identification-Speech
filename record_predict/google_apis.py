@@ -7,8 +7,9 @@ from google.cloud import speech
 from google.cloud.speech import enums
 from google.cloud.speech import types
 from google.cloud import translate
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./gcloud_account.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../gcloud_account.json"
 
+# change accordingly, check Google API's website for the codes
 lang_codes = {'croatian': 'hr-HR',
               'french'  : 'fr-FR',
               'spanish' : 'es-ES'}
