@@ -1,4 +1,5 @@
 # Language Identification From Speech
+
 The repository contains the code that allows you to obtain a dataset for desired languages and train a neural network that's able to identify the language spoken in a recording as short as 3 seconds.
 
 This code follows my bachelor's thesis, *"Recognition of Natural Language Type Using Tensorflow"*, where you can find the detailed description of the project along with the results achieved.
@@ -8,12 +9,13 @@ I'd also like to acknowledge that this project was based on the [project](https:
 
 ## Repository Structure
 The repository is separated into three categories, with each containing its own ReadMe. 
+
 | Folder | Description |
 |--|--|
 | [*data/*](https://github.com/ibro45/Language-Identification-Speech/tree/master/data) | Contains the scripts for downloading and preprocessing the dataset. |
 | [*tensorflow/*](https://github.com/ibro45/Language-Identification-Speech/tree/master/tensorflow) | Neural-network-related scripts. Creation, training, evaluation etc.|
 | [*record_predict/*](https://github.com/ibro45/Language-Identification-Speech/tree/master/record_predict) | Scripts that allow the user to record his/her speech and test it with the trained model.|
-| paper/ | Contains the author's paper titled *"Recognition of Natural Language Type Using Tensorflow"*.|
+| [*paper/*](https://github.com/ibro45/Language-Identification-Speech/tree/master/paper)| Contains the author's paper titled *"Recognition of Natural Language Type Using Tensorflow"*.|
 
 ## Requirements
 To install all the required packages, run
