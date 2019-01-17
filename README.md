@@ -8,7 +8,7 @@ I'd also like to acknowledge that this project was based on the [project](https:
 
 
 ## Repository Structure
-The repository is separated into three categories, with each containing its own ReadMe. 
+The repository is separated into four categories, with each containing its own ReadMe. 
 
 | Folder | Description |
 |--|--|

@@ -29,7 +29,7 @@ def download(language, source, source_name, source_type, output_path, max_downlo
         playlist_archive = os.path.join(output_path_raw, "archive.txt")
 
         print("Downloading {0} {1} to {2}".format(source_type, source_name, output_path_raw))
-        command = """youtube-dl -i --download-archive {} --max-filesize 50m --no-post-overwrites --max-downloads {} --extract-audio --audio-format wav {} -o "{}/%(title)s.%(ext)s" """.format(
+        command = """youtube-dl -i --download-archive {} --no-post-overwrites --max-downloads {} --extract-audio --audio-format wav {} -o "{}/%(title)s.%(ext)s" """.format(
             playlist_archive, max_downloads, source, output_path_raw)
         subprocess.call(command, shell=True)
     else:       
