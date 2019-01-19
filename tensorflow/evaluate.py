@@ -63,8 +63,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', dest='model_dir', required=True)
-    parser.add_argument('--config', dest='config', required=True)
-    parser.add_argument('--testset', dest='use_test_set', default=False, type=bool)
+    parser.add_argument('--config', dest='config', default="config.yaml")
+    parser.add_argument('--testset', dest='use_test_set', default=True, type=bool) # if False, uses validation set.
     args = parser.parse_args()
 
     evaluate(args)

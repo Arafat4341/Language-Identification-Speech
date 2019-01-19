@@ -22,7 +22,7 @@ To install all the required packages, run
 
     pip install -r requirements.txt
 
-Please note that the `requirements.txt` specifies the CPU-based `tensorflow`. If you'd like to train the neural network using GPU(s), check `tensorflow-gpu`. Note that the installation of it can be tricky, but using `conda` and this [tutorial](https://www.pugetsystems.com/labs/hpc/Install-TensorFlow-with-GPU-Support-the-Easy-Way-on-Ubuntu-18-04-without-installing-CUDA-1170/) may make it a bit easier. Also, make sure that you have the version of Nvidia drivers compatible with the current `tensorflow-gpu` version.
+Please note that the `requirements.txt` specifies the CPU-based `tensorflow`. If you'd like to train the neural network using GPU(s), check `tensorflow-gpu`. The installation of the GPU version can be tricky, but using `conda` and this [tutorial](https://www.pugetsystems.com/labs/hpc/Install-TensorFlow-with-GPU-Support-the-Easy-Way-on-Ubuntu-18-04-without-installing-CUDA-1170/) may make it a bit easier. Also, make sure that you have the version of Nvidia drivers compatible with the current `tensorflow-gpu` version.
 
 Furthermore, you should have the following utilities installed in your system:
 

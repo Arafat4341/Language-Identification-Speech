@@ -1,4 +1,4 @@
-# Obtaining and preprocessing the data
+# Obtaining and Preprocessing the Data
 
 **Important note**: Define the language names and the number of them in `tensorflow/config.yaml` under `label_names` and `num_classes`.
 
