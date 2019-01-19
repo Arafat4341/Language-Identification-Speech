@@ -2,7 +2,7 @@
 
 **Important note**: Define the language names and the number of them in `tensorflow/config.yaml` under `label_names` and `num_classes`.
 
-## The Automated Way
+# The Automated Way
 
 Steps to obtain the dataset:
 
@@ -25,7 +25,7 @@ It does the following steps:
  4. Deletes the corrupted spectrograms
  5. Organises the spectrograms into training, validation and testing sets, in order to be fed to the neural network using Keras' `ImageDataGenerator` and its [`flow_from_directory`](https://keras.io/preprocessing/image/#flow_from_directory) 
 
-## The Manual Way
+# The Manual Way
 
 If you prefer doing it the hard way and would like to have a bit more of insight into what's happening, you could also do all of the mentioned steps separately.
 
