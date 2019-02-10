@@ -2,7 +2,7 @@
 
 The repository contains the code that allows you to obtain a dataset for desired languages and train a neural network that's able to identify the language spoken in a recording as short as 3 seconds.
 
-This code follows my bachelor's thesis, *"Recognition of Natural Language Type Using Tensorflow"*, where you can find the detailed description of the project along with the results achieved.
+This code follows my bachelor's thesis, [*"Recognition of Natural Language Type Using Tensorflow"*](https://github.com/ibro45/Language-Identification-Speech/blob/master/paper/Hadzic_Ibrahim_Recognition_Of_Natural_Language_Type_Using_Tensorflow.pdf), where you can find the detailed description of the project along with the results achieved.
 
 I'd also like to acknowledge that this project was based on the [project](https://github.com/HPI-DeepLearning/crnn-lid) that this repository has forked from and their paper, [*"Language Identification Using Deep Convolutional Recurrent Neural Networks"*](https://arxiv.org/abs/1708.04811). 
 
