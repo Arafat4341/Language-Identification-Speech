@@ -23,7 +23,7 @@ It does the following steps:
  2. Performs the loudness normalisation of the 3-second audio samples
  3. Converts the audio samples to spectrograms 
  4. Deletes the corrupted spectrograms
- 5. Organises the spectrograms into training, validation and testing sets, in order to be fed to the neural network using Keras' `ImageDataGenerator` and its [`flow_from_directory`](https://keras.io/preprocessing/image/#flow_from_directory) 
+ 5. Organises the spectrograms into training, validation and testing sets, in order to be fed to the neural network using Keras's `ImageDataGenerator` and its [`flow_from_directory`](https://keras.io/preprocessing/image/#flow_from_directory) 
 
 # The Manual Way
 
